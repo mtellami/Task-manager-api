@@ -7,9 +7,13 @@ module.exports = async (req, res) => {
 		if (!user) {
 			throw new Error('Unable to create account')
 		}
-		const token = await user.generateAccessToken()
+		const token = user.generateAccessToken()
 		res.status(201).json({message: 'user created successfully', access_token: token })
 	} catch (error) {
-		res.status(400).json({ message: 'Bad request' })
+		if (error.code === 11000) {
+			res.status(400).json({ message: 'Email already exist' })
+		} else {
+			res.status(400).json({ message: error._message })
+		}
 	}
 }

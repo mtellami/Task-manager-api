@@ -14,9 +14,9 @@ const userSchema = new Schema({
 		required: true,
 		trim: true,
 		lowercase: true,
-		validator(value) {
+		validate(value) {
 			if (!validator.isEmail(value)) {
-				throw new Error('Enail is invalid')
+				throw new Error('Email is invalid')
 			}
 		}
 	},
@@ -28,10 +28,9 @@ const userSchema = new Schema({
 	}
 })
 
-userSchema.methods.generateAccessToken = async () => {
-	const token = await jwt.sign({
+userSchema.methods.generateAccessToken = function() {
+	const token =jwt.sign({
 		_id: this._id.toString() ,
-		name: this.name
 		}, process.env.JWT_SECRET_KEY
 	)
 	return token
