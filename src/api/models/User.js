@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose')
 const validator = require('validator')
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
 
 const userSchema = new Schema({
 	name: {
@@ -35,5 +36,24 @@ userSchema.methods.generateAccessToken = function() {
 	)
 	return token
 }
+
+userSchema.statics.findUser = async function(email, password) {
+	const user = await this.findOne({ email })
+	if (!user) {
+		throw new Error('User not found')
+	}
+	const verifyPassword = await bcrypt.compare(password, user.password)
+	if (!verifyPassword) {
+		throw new Error('Incorrect password')
+	}
+	return user
+} 
+
+userSchema.pre('save', async function (next) {
+	if (this.isModified('password')) {
+		this.password = await bcrypt.hash(this.password, 10) 
+	}
+	next()
+})
 
 module.exports = model('User', userSchema)

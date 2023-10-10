@@ -5,5 +5,6 @@ a task manager restful api built using expressjs and mongodb.
 
 | methods | endpoints                          | access  | description                              |  Done  |
 | ------- | ---------------------------------- | ------- | ---------------------------------------- | ------ |
-| post    | /user/register                     | public  | register                                 |​✅|
-| post    | /user/login                        | public  | login                                    |        |
+| post    | /user/register                     | public  | register                                 |    ✅  |
+| post    | /user/login                        | public  | login                                    |    ✅  |
+
