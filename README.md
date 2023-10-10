@@ -1,9 +1,9 @@
-# Task-manager-api
-A Task Manager RESTFul API built using ExpressJS and MongoDB.
+# task-manager-api
+a task manager restful api built using expressjs and mongodb.
 
-# API Endpoints
+# api endpoints
 
-| Methods | Endpoints                          | Access  | Description                              | Done |
-| ------- | ---------------------------------- | ------- | ---------------------------------------- | ---- |
-| POST    | /user/register                     | Public  | Register                                 |  [x] |
-| POST    | /user/login                        | Public  | Login                                    |  [ ] |
+| methods | endpoints                          | access  | description                              |  Done  |
+| ------- | ---------------------------------- | ------- | ---------------------------------------- | ------ |
+| post    | /user/register                     | public  | register                                 |​✅|
+| post    | /user/login                        | public  | login                                    |        |
