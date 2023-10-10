@@ -10,7 +10,8 @@ module.exports = async (req, res) => {
 		res.status(200).json({
 			message: 'Login successful',
 			username: user.name,
-			access_token: token })
+			access_token: token
+		})
 	} catch (error) {
 		res.status(400).json({ message: error.message })
 	}
