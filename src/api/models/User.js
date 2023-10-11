@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose')
 const validator = require('validator')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const Task = require('./Task')
 
 const userSchema = new Schema({
 	name: {
@@ -26,11 +27,12 @@ const userSchema = new Schema({
 		required: true,
 		minLength: 8,
 		trim: true
-	}
+	},
+	tasks: [Task.schema]
 })
 
 userSchema.methods.generateAccessToken = function() {
-	const token =jwt.sign({
+	const token = jwt.sign({
 		_id: this._id.toString() ,
 		}, process.env.JWT_SECRET_KEY
 	)
