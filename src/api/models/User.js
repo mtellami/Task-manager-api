@@ -55,6 +55,14 @@ userSchema.pre('save', async function (next) {
 	if (this.isModified('password')) {
 		this.password = await bcrypt.hash(this.password, 10) 
 	}
+	this.tasks.forEach(task => {
+		const title = task.title
+		const duplicate = this.tasks.find(obj => obj.title === title && obj._id !== task._id)
+		if (duplicate) {
+			const err = new Error('Duplicated user task')
+			return next(err)
+		}
+	})
 	next()
 })
 

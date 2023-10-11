@@ -10,7 +10,7 @@ const UpdateUser = require('../controllers/user/UpdateUser')
 const DeleteUser = require('../controllers/user/DeleteUser')
 
 // Routes
-const taskRoutes = require('./Task')
+const taskRoutes = require('./task')
 
 router.post('/user/register', Register)
 router.post('/user/login', Login)
