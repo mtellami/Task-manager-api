@@ -12,7 +12,6 @@ module.exports = async (req, res) => {
 		})
 		req.user.tasks.push(task)
 		await req.user.save()
-		console.log('>>>>>>>>>>>>>>>>>>>>>>>>')
 		res.status(201).json({ message: 'Task added successfully', taskID: task._id })
 	} catch (error) {
 		res.status(400).json({ message: "Bad request" })
